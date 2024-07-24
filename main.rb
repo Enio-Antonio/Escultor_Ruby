@@ -34,4 +34,4 @@ objeto.put_voxel 5, 1, 7
 objeto.put_voxel 2, 0, 7
 objeto.put_voxel 5, 0, 7
 
-objeto.write_OFF "ruby_created.off"
+#objeto.write_OFF "ruby_created.off"

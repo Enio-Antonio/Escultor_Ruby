@@ -65,8 +65,68 @@ class Sculptor
         end
     end
 
-    def imprimir_v
-        return @v
+    def put_sphere xcenter, ycenter, zcenter, radius
+        for i in 0..(@nx - 1) do
+            for c in 0..(@ny - 1) do
+                for k in 0..(@nz - 1) do
+                    if (i - xcenter) * (i - xcenter) +
+                        (c - ycenter) * (c - ycenter) +
+                        (k - zcenter) * (k - zcenter) <= radius * radius then
+                        @v[i][c][k].show= true
+                        @v[i][c][k].r= @r
+                        @v[i][c][k].g= @g
+                        @v[i][c][k].b= @b
+                        @v[i][c][k].a= @a
+                    end
+                end
+            end
+        end
+    end
+
+    def cut_sphere xcenter, ycenter, zcenter, radius
+        for i in 0..(@nx - 1) do
+            for c in 0..(@ny - 1) do
+                for k in 0..(@nz - 1) do
+                    if (i - xcenter) * (i - xcenter) +
+                        (c - ycenter) * (c - ycenter) +
+                        (k - zcenter) * (k - zcenter) <= radius * radius then
+                        @v[i][c][k].show= false
+                    end
+                end
+            end
+        end
+    end
+
+    def put_ellipsoid xcenter, ycenter, zcenter, rx, ry, rz
+        for i in 0..(@nx - 1) do
+            for c in 0..(@ny - 1) do
+                for k in 0..(@nz - 1) do
+                    if ((i - xcenter) * (i - xcenter)) / (rx.to_f * rx) +
+                        ((c - ycenter) * (c - ycenter)) / (ry.to_f * ry) +
+                        ((k - zcenter) * (k - zcenter)) / (rz.to_f * rz) <= 1 then
+                        @v[i][c][k].show= true
+                        @v[i][c][k].r= @r
+                        @v[i][c][k].g= @g
+                        @v[i][c][k].b= @b
+                        @v[i][c][k].a= @a
+                    end
+                end
+            end
+        end
+    end
+
+    def cut_ellipsoid xcenter, ycenter, zcenter, rx, ry, rz
+        for i in 0..(@nx - 1) do
+            for c in 0..(@ny - 1) do
+                for k in 0..(@nz - 1) do
+                    if ((i - xcenter) * (i - xcenter)) / (rx.to_f * rx) +
+                        ((c - ycenter) * (c - ycenter)) / (ry.to_f * ry) +
+                        ((k - zcenter) * (k - zcenter)) / (rz.to_f * rz) <= 1 then
+                        @v[i][c][k].show = false
+                    end
+                end
+            end
+        end
     end
 
     def write_OFF filename
@@ -139,7 +199,7 @@ class Sculptor
             end
         end
 
-          sculptor_writer.close
+    sculptor_writer.close
     end
 
 end
