@@ -146,7 +146,7 @@ class Sculptor
         for i in 0..(@nx - 1) do
             for c in 0..(@ny - 1) do
                 for k in 0..(@nz - 1) do
-                    if @v[i][c][k].show == true then
+                    if @v[i][c][k].show then
                         contador_vox += 1
                     end
                 end
@@ -163,7 +163,7 @@ class Sculptor
         for i in 0..(@nx - 1) do
             for c in 0..(@ny - 1) do
                 for k in 0..(@nz - 1) do
-                    if @v[i][c][k].show == true then
+                    if @v[i][c][k].show then
                           sculptor_writer.write "#{i - 1} #{c} #{k - 1}\n"
                           sculptor_writer.write "#{i - 1} #{c - 1} #{k - 1}\n"
                           sculptor_writer.write "#{i} #{c - 1} #{k - 1}\n"
@@ -180,7 +180,7 @@ class Sculptor
         for i in 0..(@nx - 1) do
             for c in 0..(@ny - 1) do
                 for k in 0..(@nz - 1) do
-                    if (@v[i][c][k].show == true) then
+                    if @v[i][c][k].show then
                         sculptor_writer.write "4 #{aux_v1 + soma8} #{aux_v4 + soma8} #{aux_v3 + soma8} #{aux_v2 + soma8} #{@v[i][c][k].r} #{@v[i][c][k].g} #{@v[i][c][k].b} #{@v[i][c][k].a} \n"
 
                         sculptor_writer.write "4 #{aux_v5 + soma8} #{aux_v6 + soma8} #{aux_v7 + soma8} #{aux_v8 + soma8} #{@v[i][c][k].r} #{@v[i][c][k].g} #{@v[i][c][k].b} #{@v[i][c][k].a} \n"
